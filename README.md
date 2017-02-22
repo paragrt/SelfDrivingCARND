@@ -23,7 +23,13 @@ The goals / steps of this project are the following:
 9. This line is what I am drawing for lanes with thickness of almost 10.
 10. How did I extrapolate top and bottom points to draw the 2 lines ? Assuming that my top y coordinate is just past the top of my **trapezoid viewport** around y1=340 and my bottom y is the bottom of the image y2=540 I calculated x1 and x2 using the lineregres returned slope and intercept.
 11. Thats it...used the weighted_img to blend my annotations on the actual image.
-12. For development...I wrote a for loop to go thru each image and display it one by one in line. For documentation, I saved them in test_images/my_{original name}. Will be Uploaded as part of the package to my github
+12. For development...I wrote a for loop to go thru each image and display it one by one in line. For documentation, I saved them in test_images/my_{original name}. Uploaded as part of the package to my github
+![SolidWhiteCurve\label{mylabel}](/test_images/my_solidWhiteCurve.jpg)
+![SolidWhiteRight\label{mylabel}](/test_images/my_solidWhiteRight.jpg)
+![SolidYellowCurve\label{mylabel}](/test_images/my_solidYellowCurve.jpg)
+![SolidYellowCurve2\label{mylabel}](/test_images/my_solidYellowCurve2.jpg)
+![SolidYellowLeft\label{mylabel}](/test_images/my_solidYellowLeft.jpg)
+![WhiteCarLaneSwitch\label{mylabel}](/test_images/my_whiteCarLaneSwitch.jpg)
 
 ###2. Identify potential shortcomings with your current pipeline
 1. I am not happy with the extrapolation. 
