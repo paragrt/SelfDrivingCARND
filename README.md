@@ -5,6 +5,10 @@ Udacity Self Driving car nano degree Term 1
 
 **Finding Lane Lines on the Road**
 
+1. [Annotated white.mp4 video](/videos/white.mp4)
+2. [Annotated yellow.mp4 video](/videos/yellow.mp4)
+3. I could not get the challenge.mp4 marked very nicely. Not worth showing.
+
 The goals / steps of this project are the following:
 * Make a pipeline that finds lane lines on the road
 * Reflect on your work in a written report
