@@ -30,12 +30,12 @@ The goals / steps of this project are the following:
 12. For development...I wrote a for loop to go thru each image and display it one by one in line. For documentation, I saved them in test_images/my_{original name}. Uploaded as part of the package to my github
 <table>
 <tr><td>BEFORE</td><td>AFTER</td></tr>
-<tr><td><img src="/test_images/solidWhiteCurve.jpg" style="width:100px;"/></td></tr> <tr><td><img src="/test_images/my2_solidWhiteCurve.jpg" style="width: 200px;"/></td></tr>
-<tr><td><img src="/test_images/solidWhiteRight.jpg" style="width:100px;"/></td></tr> <tr><td><img src="/test_images/my2_solidWhiteRight.jpg" style="width: 200px;"/></td></tr>
-<tr><td><img src="/test_images/solidYellowCurve.jpg" style="width:100px;"/></td></tr> <tr><td><img src="/test_images/my2_solidYellowCurve.jpg" style="width: 200px;"/></td></tr>
-<tr><td><img src="/test_images/solidYellowCurve2.jpg" style="width:100px;"/></td></tr> <tr><td><img src="/test_images/my2_solidYellowCurve2.jpg" style="width: 200px;"/></td></tr>
-<tr><td><img src="/test_images/solidYellowLeft.jpg" style="width:100px;"/></td></tr> <tr><td><img src="/test_images/my2_solidYellowLeft.jpg" style="width: 200px;"/></td></tr>
-<tr><td><img src="/test_images/whiteCarLaneSwitch.jpg" style="width:100px;"/></td></tr> <tr><td><img src="/test_images/my2_whiteCarLaneSwitch.jpg" style="width:100px;"/></td></tr>
+<tr><td><img src="/test_images/solidWhiteCurve.jpg" style="width:100px;"/></td><td><img src="/test_images/my2_solidWhiteCurve.jpg" style="width: 200px;"/></td></tr>
+<tr><td><img src="/test_images/solidWhiteRight.jpg" style="width:100px;"/></td><td><img src="/test_images/my2_solidWhiteRight.jpg" style="width: 200px;"/></td></tr>
+<tr><td><img src="/test_images/solidYellowCurve.jpg" style="width:100px;"/></td><td><img src="/test_images/my2_solidYellowCurve.jpg" style="width: 200px;"/></td></tr>
+<tr><td><img src="/test_images/solidYellowCurve2.jpg" style="width:100px;"/></td><td><img src="/test_images/my2_solidYellowCurve2.jpg" style="width: 200px;"/></td></tr>
+<tr><td><img src="/test_images/solidYellowLeft.jpg" style="width:100px;"/></td><td><img src="/test_images/my2_solidYellowLeft.jpg" style="width: 200px;"/></td></tr>
+<tr><td><img src="/test_images/whiteCarLaneSwitch.jpg" style="width:100px;"/></td><td><img src="/test_images/my2_whiteCarLaneSwitch.jpg" style="width:100px;"/></td></tr>
 </table>
 
 ###2. Identify potential shortcomings with your current pipeline
