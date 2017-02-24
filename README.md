@@ -28,12 +28,15 @@ The goals / steps of this project are the following:
 10. How did I extrapolate top and bottom points to draw the 2 lines ? Assuming that my top y coordinate is just past the top of my **trapezoid viewport** around y1=340 and my bottom y is the bottom of the image y2=540 I calculated x1 and x2 using the lineregres returned slope and intercept.
 11. Thats it...used the weighted_img to blend my annotations on the actual image.
 12. For development...I wrote a for loop to go thru each image and display it one by one in line. For documentation, I saved them in test_images/my_{original name}. Uploaded as part of the package to my github
-![SolidWhiteCurve\label{mylabel}](/test_images/my_solidWhiteCurve.jpg)
-![SolidWhiteRight\label{mylabel}](/test_images/my_solidWhiteRight.jpg)
-![SolidYellowCurve\label{mylabel}](/test_images/my_solidYellowCurve.jpg)
-![SolidYellowCurve2\label{mylabel}](/test_images/my_solidYellowCurve2.jpg)
-![SolidYellowLeft\label{mylabel}](/test_images/my_solidYellowLeft.jpg)
-![WhiteCarLaneSwitch\label{mylabel}](/test_images/my_whiteCarLaneSwitch.jpg)
+<table>
+<tr><td>BEFORE</td><td>AFTER</td></tr>
+<tr><td><img src="/test_images/my2_solidWhiteCurve.jpg" style="width: 200px;"/></td></tr> <tr><td><img src="/test_images/solidWhiteCurve.jpg" style="width: 200px;"/></td></tr>
+<tr><td><img src="/test_images/my2_solidWhiteRight.jpg" style="width: 200px;"/></td></tr> <tr><td><img src="/test_images/solidWhiteRight.jpg" style="width: 200px;"/></td></tr>
+<tr><td><img src="/test_images/my2_solidYellowCurve.jpg" style="width: 200px;"/></td></tr> <tr><td><img src="/test_images/solidYellowCurve.jpg" style="width: 200px;"/></td></tr>
+<tr><td><img src="/test_images/my2_solidYellowCurve2.jpg" style="width: 200px;"/></td></tr> <tr><td><img src="/test_images/solidYellowCurve2.jpg" style="width: 200px;"/></td></tr>
+<tr><td><img src="/test_images/my2_solidYellowLeft.jpg" style="width: 200px;"/></td></tr> <tr><td><img src="/test_images/solidYellowLeft.jpg" style="width: 200px;"/></td></tr>
+<tr><td><img src="/test_images/my2_whiteCarLaneSwitch.jpg" style="width: 200px;"/></td></tr> <tr><td><img src="/test_images/whiteCarLaneSwitch.jpg" style="width: 200px;"/></td></tr>
+</table>
 
 ###2. Identify potential shortcomings with your current pipeline
 1. I am not happy with the extrapolation. 
