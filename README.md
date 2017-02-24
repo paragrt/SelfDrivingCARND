@@ -1,5 +1,9 @@
 # SelfDrivingCARND
 Udacity Self Driving car nano degree Term 1
+
+<font size="3" color="red">RESUBMIT: IMPROVED alignment on 2nd last image(See before after pic)</font>
+
+
 #**Finding Lane Lines on the Road** 
 ---
 
@@ -29,7 +33,7 @@ The goals / steps of this project are the following:
 11. Thats it...used the weighted_img to blend my annotations on the actual image.
 12. For development...I wrote a for loop to go thru each image and display it one by one in line. For documentation, I saved them in test_images/my_{original name}. Uploaded as part of the package to my github
 <table>
-<tr><td>BEFORE</td><td>AFTER</td></tr>
+<tr><td>1st Submission</td><td>2nd Submission</td></tr>
 <tr><td><img src="/test_images/my_solidWhiteCurve.jpg" style="width:100px;"/></td><td><img src="/test_images/my2_solidWhiteCurve.jpg" style="width: 200px;"/></td></tr>
 <tr><td><img src="/test_images/my_solidWhiteRight.jpg" style="width:100px;"/></td><td><img src="/test_images/my2_solidWhiteRight.jpg" style="width: 200px;"/></td></tr>
 <tr><td><img src="/test_images/my_solidYellowCurve.jpg" style="width:100px;"/></td><td><img src="/test_images/my2_solidYellowCurve.jpg" style="width: 200px;"/></td></tr>
