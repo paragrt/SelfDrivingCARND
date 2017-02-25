@@ -1,6 +1,7 @@
 # SelfDrivingCARND
 Udacity Self Driving car nano degree Term 1
 
+<font size="3" color="red">RESUBMIT: IMPROVED lane stability by frame averaging and more lines picked up due to change in thresholds and blur as per 2nd review...Did not add before after pics...tired of uploading everything all over again. This time just the Readme File, PI.ipynb and the 2 videos</font>
 <font size="3" color="red">RESUBMIT: IMPROVED alignment on 2nd last image(See before after pic)</font>
 
 
