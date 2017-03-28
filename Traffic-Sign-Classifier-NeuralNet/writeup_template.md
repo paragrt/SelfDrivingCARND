@@ -36,7 +36,7 @@ The goals / steps of this project are the following:
 ## Rubric Points
 **Submission Files include**
 1) [Notebook file](./Traffic_Sign_Classifier.ipynb)
-2) [HTML File](./Traffic_Sign_Classifier-2.html)
+2) [HTML File Previous](./Traffic_Sign_Classifier-2.html) and the new [HTML File Latest](./Traffic_Sign_Classifier-3.html)
 3) 13 images I downloaded from the website to test real world data
 [image14](./class_14.png)
 [image18](./class_18.png)
