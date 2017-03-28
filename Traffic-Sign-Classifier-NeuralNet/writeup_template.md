@@ -1,7 +1,23 @@
 #**Traffic Sign Recognition** 
 
-##Writeup
+##Writeup RESUBMIT 3/28/2017 11:24 AM.
 
+**BEGIN CHANGES**
+
+Reason for resubmit: Probablities need to be between 0 to 1. My previous submission had percentages(I think)
+
+changed<br/>
+top5 = sess.run(tf.nn.top_k(logits, k=5), feed_dict={x: batch_x, y: batch_y, keep_prob:1.0})<br/>
+to this<br/>
+top5 = sess.run(tf.nn.top_k(<b>tf.nn.softmax(logits)</b>, k=5), feed_dict={x: batch_x, y: batch_y, keep_prob:1.0})<br/>
+<p/>
+So that it shows Softmax probablities.(between 0 and 1)
+Since I modified the code I resubmitted the python notebook and -3.html as well but nothing else has changed
+
+I was confused by the reviewer's suggestion to use tf.nn.in_top_k whereas the project notebook shows tf.nn.top_k
+But I stuck to the notebook's recommendation as I could not find explanation about in_top_k the way the notebook took pains to explain top_k
+
+**END CHANGES**
 
 ---
 
