@@ -79,6 +79,8 @@ While this may result in more robust learning....due to my modest python skills,
 13) As I mentioned, I will figure out a way to speed up the noise addition to my fake examples once I am better at python
 14) I think in this domain, an important feature we need to add is how to give more weightage to "more important signs". For example...if I mis-classify the wild animal sign as a Roadwork...not so bad...but if I misclassify a stop sign as a 100kph sign...thats bad. We need to build in some intelligence wherein even if a prediction is slightly lower propbablity ( like my bullet #11 ), maybe picking the 2nd is allowed...because that is a critical sign.
 
+<a name="NeuralNetIntuition">Neural Network Intution</a>
+
 **Since the Instructor mentioned some of the aspects of Neural networks (such as Drop Out) feel like black magic, I have tried to create a table of intuitive understanding of each concept.**
 
 |Neural Networking Terms|	Intution/Real Life examples|
