@@ -39,7 +39,7 @@ The goals / steps of this project are the following:
 
 ###DataSet Summary & Exploratory Visualization
 
-1) There are 43 classes ( different signs )
+1) There are 43 classes ( 43 different road signs )
 2) The training set is 34799 images each of 32x32x3 . Validation is 4410 and Test is 12630
 3) I explored using grayscaling+normalize vs 3 color and it looks like model learns better with color.
 4) The picture below on the left, shows how some of the classes have very few examples and some have a lot more.
