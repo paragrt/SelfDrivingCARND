@@ -15,27 +15,27 @@ The goals / steps of this project are the following:
 * Analyze the softmax probabilities of the new images
 * Summarize the results with a written report
 
-[image14]: ./class_14.png " Stop Sign"
-[image18]: ./class_18.png
-[image19]: ./lass_19.png
-[image20]: ./class_20.png
-[image22]: ./class_22.png
-[image23]: ./class_23.png
-[image27]: ./class_27.png
-[image29]: ./class_29.png
-[image3]: ./class_3.png
-[image31]: ./class_31.png
-[image36]: ./class_36.png
-[image37]: ./class_37.png
-[image38]: ./class_38.png
-[image39]: ./class_39.png
+
 
 ## Rubric Points
 **Submission Files include**
-1) Notebook file
-2) HTML File
-3) 8 images I downloaded from the website to test real world data
-
+1) [Notebook file](./Traffic_Sign_Classifier.ipynb)
+2) [HTML File](./Traffic_Sign_Classifier-2.html)
+3) 13 images I downloaded from the website to test real world data
+[image14](./class_14.png)
+[image18](./class_18.png)
+[image19](./lass_19.png)
+[image20](./class_20.png)
+[image22](./class_22.png)
+[image23](./class_23.png)
+[image27](./class_27.png)
+[image29](./class_29.png)
+[image3](./class_3.png)
+[image31](./class_31.png)
+[image36](./class_36.png)
+[image37](./class_37.png)
+[image38](./class_38.png)
+[image39](./class_39.png)
 ###DataSet Summary & Exploratory Visualization
 1) There are 43 classes ( different signs )
 2) The training set is 34799 images each of 32x32x3 . Validation is 4410 and Test is 12630
