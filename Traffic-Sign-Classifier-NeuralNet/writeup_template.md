@@ -36,13 +36,15 @@ The goals / steps of this project are the following:
 [image37](./class_37.png)
 [image38](./class_38.png)
 [image39](./class_39.png)
+
 ###DataSet Summary & Exploratory Visualization
+
 1) There are 43 classes ( different signs )
 2) The training set is 34799 images each of 32x32x3 . Validation is 4410 and Test is 12630
 3) I explored using grayscaling+normalize vs 3 color and it looks like model learns better with color.
 4) The picture below on the left, shows how some of the classes have very few examples and some have a lot more.
 On the right, after Augumentation, it shows how I have tried to balance out the examples by cloning  existing examples of respective classes.
-[ImageBeforeAfterAugumentation]:./BeforeAndAfter.png "Before and After Augumentation to create Balance"
+<img src="./BeforeAndAfter.png">Before and After Augumentation to create Balance</img>
 5) I tried adding some noise ( rotation or just changing pixel values Plus or Minus 10 at random to about 10% of the pixels ) only to the images I was adding.
 While this may result in more robust learning....due to my modest python skills, the process was too slow. So I abandoned that (for now) and just used np.tile which is fast
 
