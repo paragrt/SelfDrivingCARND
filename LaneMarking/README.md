@@ -10,8 +10,8 @@ Udacity Self Driving car nano degree Term 1
 
 **Finding Lane Lines on the Road**
 
-1. [Annotated white.mp4 video](/videos/white.mp4) (Use save as to download and then play it)
-2. [Annotated yellow.mp4 video](/videos/yellow.mp4) (Use save as to download and then play it)
+1. [Annotated white.mp4 video](videos/white.mp4) (Use save as to download and then play it)
+2. [Annotated yellow.mp4 video](videos/yellow.mp4) (Use save as to download and then play it)
 3. I could not get the challenge.mp4 marked very nicely. Not worth showing.
 
 The goals / steps of this project are the following:
@@ -35,12 +35,12 @@ The goals / steps of this project are the following:
 12. For development...I wrote a for loop to go thru each image and display it one by one in line. For documentation, I saved them in test_images/my_{original name}. Uploaded as part of the package to my github
 <table>
 <tr><td>1st Submission</td><td>2nd Submission</td></tr>
-<tr><td><img src="/test_images/my_solidWhiteCurve.jpg" style="width:100px;"/></td><td><img src="/test_images/my2_solidWhiteCurve.jpg" style="width: 200px;"/></td></tr>
-<tr><td><img src="/test_images/my_solidWhiteRight.jpg" style="width:100px;"/></td><td><img src="/test_images/my2_solidWhiteRight.jpg" style="width: 200px;"/></td></tr>
-<tr><td><img src="/test_images/my_solidYellowCurve.jpg" style="width:100px;"/></td><td><img src="/test_images/my2_solidYellowCurve.jpg" style="width: 200px;"/></td></tr>
-<tr><td><img src="/test_images/my_solidYellowCurve2.jpg" style="width:100px;"/></td><td><img src="/test_images/my2_solidYellowCurve2.jpg" style="width: 200px;"/></td></tr>
-<tr><td><img src="/test_images/my_solidYellowLeft.jpg" style="width:100px;"/></td><td><img src="/test_images/my2_solidYellowLeft.jpg" style="width: 200px;"/></td></tr>
-<tr><td><img src="/test_images/my_whiteCarLaneSwitch.jpg" style="width:100px;"/></td><td><img src="/test_images/my2_whiteCarLaneSwitch.jpg" style="width:100px;"/></td></tr>
+<tr><td><img src="test_images/my_solidWhiteCurve.jpg" style="width:100px;"/></td><td><img src="test_images/my2_solidWhiteCurve.jpg" style="width: 200px;"/></td></tr>
+<tr><td><img src="test_images/my_solidWhiteRight.jpg" style="width:100px;"/></td><td><img src="test_images/my2_solidWhiteRight.jpg" style="width: 200px;"/></td></tr>
+<tr><td><img src="test_images/my_solidYellowCurve.jpg" style="width:100px;"/></td><td><img src="test_images/my2_solidYellowCurve.jpg" style="width: 200px;"/></td></tr>
+<tr><td><img src="test_images/my_solidYellowCurve2.jpg" style="width:100px;"/></td><td><img src="test_images/my2_solidYellowCurve2.jpg" style="width: 200px;"/></td></tr>
+<tr><td><img src="test_images/my_solidYellowLeft.jpg" style="width:100px;"/></td><td><img src="test_images/my2_solidYellowLeft.jpg" style="width: 200px;"/></td></tr>
+<tr><td><img src="test_images/my_whiteCarLaneSwitch.jpg" style="width:100px;"/></td><td><img src="test_images/my2_whiteCarLaneSwitch.jpg" style="width:100px;"/></td></tr>
 </table>
 
 ###2. Identify potential shortcomings with your current pipeline
