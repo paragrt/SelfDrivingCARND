@@ -47,7 +47,7 @@ The goals / steps of this project are the following:
 1. I am not happy with the extrapolation. 
 2. My lane line (right one) is not very stable and tends to bleed into the road...not sure why. 
 3. I am also not happy with the manual fiddling of various parameters. Wish there was a way to automate that and then find a way to call out when we have the real best fit...something similar to learning I guess...But well beyond what I know at this stage.
-4. I am new to python and I may have done things less efficiently. But this is my problem.
+4. I am new to ComputerVisaion and I may have done things less efficiently. But this is my problem.
 ###3. Suggest possible improvements to your pipeline
 1. I guess some numpy/statistics function might help with better extrapolation?
 2. In some cases like the challenge.mp4, the curve is sharp and I think its unreasonable to assume linear regression straight line fit will work so perhaps a polyfit which follows the curving lane would make sense? Just guessing.
