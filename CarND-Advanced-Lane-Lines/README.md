@@ -20,13 +20,11 @@ The goals / steps of this project are the following:
 [//]: # (Image References)
 
 ### [All the intermediate images are inline in the Jupyter Notebook.](https://github.com/paragrt/SelfDrivingCARND/tree/master/CarND-Advanced-Lane-Lines/P_Adv.ipynb)
-
 Note: You may have to reload the jupyter notebook if the load fails the 1st time around...maybe because it is so large.
-### [Here is the resultant Video](https://github.com/paragrt/SelfDrivingCARND/tree/master/CarND-Advanced-Lane-Lines/videos/pv1.mp4)
+
+### [Here is the resultant Project Video](https://github.com/paragrt/SelfDrivingCARND/tree/master/CarND-Advanced-Lane-Lines/videos/pv1.mp4)
 Note: May have to download the videos to play it.
-
 [Sample Video Frame](https://github.com/paragrt/SelfDrivingCARND/tree/master/CarND-Advanced-Lane-Lines/Sample_pv1_frame.png)
-
 Challenge and the Harder Challenge videos need a bit of work...but here they are anyway.
 
 [Challenge](https://github.com/paragrt/SelfDrivingCARND/tree/master/CarND-Advanced-Lane-Lines/videos/pv_challenge.mp4)
