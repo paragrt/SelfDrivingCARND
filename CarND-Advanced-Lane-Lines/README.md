@@ -22,6 +22,7 @@ The goals / steps of this project are the following:
 ### [All the intermediate images are inline in the Jupyter Notebook.](https://github.com/paragrt/SelfDrivingCARND/tree/master/CarND-Advanced-Lane-Lines/P_Adv.ipynb)
 ### [Here is the resultant Video](https://github.com/paragrt/SelfDrivingCARND/tree/master/CarND-Advanced-Lane-Lines/videos/pv1.mp4)
 
+[Sample Video Frame](https://github.com/paragrt/SelfDrivingCARND/tree/master/CarND-Advanced-Lane-Lines/Sample_pv1_frame.png)
 ## [Rubric](https://review.udacity.com/#!/rubrics/571/view) Points
 
 ### Here I will consider the rubric points individually and describe how I addressed each point in my implementation.  
