@@ -57,9 +57,9 @@ You're reading it!
 3. Cell 4 contains some Project 1 helpers which I used( grayscale and region of interest)...others I could have deleted.
 4. Cell 5 contains the various sobel(x,y,magnitude and direction) gradients function which I thought I might need..but in the end the color & x gradient sufficied cell:5,line:60 { combinedSobel(img, s_thresh=(170, 200), sx_thresh=(20, 100)) ) }
 
-5. Cell 6 contains the sliding window lane finder almost as is except for this important insight. Since Lanes are parallel, I basically looked at each of the 2 histogram peaks and saw which one was higher and anchored the lane to that side. So I did use the polyfit regression on either the left or right, whichever had a higer histogram peak and then used the assumption that lanes are 525 pixels wide(heuristic) to plot the other side. Now, if we want to get cuter for finding the "other side", we could do a weighted average between confidence levels on the other side and adjust the lane positions between calculated and using regression and calculated using the above assumption. I kept it simple. In the physical world, this is akin to hugging the lane you can see best because the other side is either covered in snow or onc oming headlights make it hard to see...
-6. I did add a little bit of "memory" to remember the previous frames peak and confidence levels just in case you come to a frame where neither side is really a standout lane marking...this is akin to keeping the steering unchanged when you are dumped on by a shower of water or snow from a passing car...completely blocking your view for a few frames(hopefully not too much more!). In this case I just take the average of previous and current and stay with it. 
-7. After this the lanes are marked in the Birds Eye View perspective. 
+5. Cell 6 contains the sliding window lane finder almost as-is from the lesson, except for this important insight. Since Lanes are parallel, I basically looked at each of the 2 histogram peaks and saw which one was higher and anchored the lane to that side. So I did use the polyfit regression on the "SURE" side (left or right, whichever had a higer histogram peak) and then used the assumption that lanes are 525 pixels wide(heuristic) to plot the other side. Now, if we want to get more cute, for finding the "other side", we could do a weighted average between confidence levels on the other side and adjust the lane positions between calculated using regression and calculated using the above assumption. I kept it simple though. <b>In the physical world, this is akin to hugging the lane you can see best because the other side is either covered in snow or onc oming headlights make it hard to see...</b>
+6. I did add a little bit of "memory" to remember the previous frames peak and confidence levels just in case you come to a frame where histogram peaks are not prominent...i.e. neither side is really a standout lane marking...this is akin to keeping the steering unchanged when you are dumped on by a shower of water or snow from a passing car...completely blocking your view for a few frames(hopefully not too much more!). In this case I just take the average of previous and current and stay with it. 
+7. After this the lanes are marked in the Birds Eye View perspective. And they MUST be parallel.
 8. Now its a matter of using the reverse camera projection to go back to the original perspective from within the car and overlaying the original frame with thsi marked lane. I am trying to find a way to make it(lane marking) "transparent"....will do later
 ### Pipeline (single images)
 
@@ -91,7 +91,7 @@ I struggled with the aplha channel addition to make the lane marking transparent
 
 #### 1. Provide a link to your final video output.  Your pipeline should perform reasonably well on the entire project video (wobbly lines are ok but no catastrophic failures that would cause the car to drive off the road!).
 When it got to the actual video, simply copied lesson 1 skeleton to drive the find lanes and mostly copied the pipeline I used for test_images into the findLanes function
-Here's a [link to my video result](./project_video.mp4)
+Here's a [link to my video result](./pv1.mp4)
 
 ---
 
