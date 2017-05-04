@@ -19,8 +19,8 @@ The goals / steps of this project are the following:
 
 [//]: # (Image References)
 
-### [All the intermediate images are inline in the Jupyter Notebook.](https://github.com/paragrt/SelfDrivingCARND/edit/master/CarND-Advanced-Lane-Lines/P_Adv.ipynb)
-### [Here is the resultant Video](https://github.com/paragrt/SelfDrivingCARND/edit/master/CarND-Advanced-Lane-Lines/videos/pv1.mp4)
+### [All the intermediate images are inline in the Jupyter Notebook.](https://github.com/paragrt/SelfDrivingCARND/tree/master/CarND-Advanced-Lane-Lines/P_Adv.ipynb)
+### [Here is the resultant Video](https://github.com/paragrt/SelfDrivingCARND/tree/master/CarND-Advanced-Lane-Lines/videos/pv1.mp4)
 
 ## [Rubric](https://review.udacity.com/#!/rubrics/571/view) Points
 
