@@ -28,9 +28,9 @@ Note: May have to download the videos to play it.
 [Here is a Sample Video Frame](https://github.com/paragrt/SelfDrivingCARND/tree/master/CarND-Advanced-Lane-Lines/Sample_pv1_frame.png)
 
 Challenge and the Harder Challenge videos need a bit of work...but here they are anyway.
-[Challenge](https://github.com/paragrt/SelfDrivingCARND/tree/master/CarND-Advanced-Lane-Lines/videos/pv_challenge.mp4)
+[Challenge Video](https://github.com/paragrt/SelfDrivingCARND/tree/master/CarND-Advanced-Lane-Lines/videos/pv_challenge.mp4)
 and
-[Harder Challenge](https://github.com/paragrt/SelfDrivingCARND/tree/master/CarND-Advanced-Lane-Lines/videos/pv_harder.mp4)
+[Harder Challenge Video](https://github.com/paragrt/SelfDrivingCARND/tree/master/CarND-Advanced-Lane-Lines/videos/pv_harder_smaller.mov)
 
 
 ## [Rubric](https://review.udacity.com/#!/rubrics/571/view) Points
