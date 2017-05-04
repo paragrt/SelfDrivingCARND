@@ -91,7 +91,7 @@ I struggled with the aplha channel addition to make the lane marking transparent
 
 #### 1. Provide a link to your final video output.  Your pipeline should perform reasonably well on the entire project video (wobbly lines are ok but no catastrophic failures that would cause the car to drive off the road!).
 When it got to the actual video, simply copied lesson 1 skeleton to drive the find lanes and mostly copied the pipeline I used for test_images into the findLanes function
-Here's a [link to my video result](./pv1.mp4)
+Here's a [link to my video result](https://github.com/paragrt/SelfDrivingCARND/tree/master/CarND-Advanced-Lane-Lines/videos/pv1.mp4)
 
 ---
 
