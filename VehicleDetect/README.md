@@ -41,15 +41,15 @@ hog_channel = 'ALL' # Can be 0, 1, 2, or "ALL"
 spatial_size = (32, 32) # Spatial binning dimensions
 hist_bins = 32    # Number of histogram bins
 </pre>
-![alt text][image2]
 
 ####2. Explain how you settled on your final choice of HOG parameters.
-
-I tried various combinations of parameters and...
+I tried HOG channel of 0 and ALL and ALL worked better. RGB worked better. The rest of the defaults were acceptable. I tried Hist and spatial bins of 16 but 32 is a nice middle ground between speed and effectiveness.
 
 ####3. Describe how (and identify where in your code) you trained a classifier using your selected HOG features (and color features if you used them).
 
-I trained a linear SVM using...
+Cell 3, line 27/33 after extracting features HOG, color and spatial bin features, I trained a linear SVM using(59 and 62)
+Used the train/test/split of 80/20
+I shuffled the training set filenames before extraction so that files(esp of the white car of which I made copies) will be spread out thru the train/test.
 
 ###Sliding Window Search
 
