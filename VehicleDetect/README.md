@@ -1,7 +1,17 @@
 
 
 <h1>Vehicle Detection Project</h1>
+<h2>Attempt # 2...Aim to reduce too many false positives by using MLPClassifier</h2>
 
+<h2>What has changed</h2>
+<ol>
+<li>Using MLPClassifier, Adam's optimizer, the accuracy is 99.5+</li>
+<li>The false positives are fewer even before heatmap elimination</li>
+<li>still struggles to capture the white car...even though I added quite a few examples of images from various parts/angles. Any suggestions?</li>
+<li>Overall it has improved. Let me know if I can look at anything else</li>
+<li>Initially with big overlap, the speed was 5 secs/it...but adjusted the frame(XY window) and overlap and now averaging 1.2s/it...much better</li>
+</ol>
+<hr/>
 The goals / steps of this project are the following:
 
 * Perform a Histogram of Oriented Gradients (HOG) feature extraction on a labeled training set of images and train a classifier Linear SVM classifier
