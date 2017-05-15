@@ -11,7 +11,9 @@ The goals / steps of this project are the following:
 * Run your pipeline on a video stream (start with the test_video.mp4 and later implement on full project_video.mp4) and create a heat map of recurring detections frame by frame to reject outliers and follow detected vehicles.
 * Estimate a bounding box for vehicles detected.
 
-
+<a href="./P_Vehicle-Detection.ipynb">P_Vehicle-Detection.ipynb</a><br/>
+<a href="./pv3_test_video.mp4">TEST Video</a><br/>
+<a href="./pv3_project_video.mp4">Project Video</a><br/>
 
 ## [Rubric](https://review.udacity.com/#!/rubrics/513/view) Points
 ###Here I will consider the rubric points individually and describe how I addressed each point in my implementation.  
@@ -27,7 +29,7 @@ You're reading it!
 ####1. Explain how (and identify where in your code) you extracted HOG features from the training images.
 
 Cell1, Line 60 is the extract features which is from the lessons. Its focus is on HOG, SPatial Bins and Color.
-Cell3, line 3 to 6, I globbed and shuffled the vehicle and `non-vehicle` images because I created some copies of (vehicles)white car at the required perspective and also of (non-vehicles)left railing and shadows 
+Cell3, line 3 to 6, I globbed and shuffled the 'vehicle' and 'non-vehicle' images because I created some copies of (vehicles)white car at the required perspective and also of (non-vehicles)left railing and shadows.   
 I extracted the features at line 27 cell 3. and then went on to training linear SVM
 
 I then explored different color spaces and different `skimage.hog()` parameters 
@@ -64,7 +66,7 @@ I setup a 10 frame memory and as long as the box shows up in each frame...it was
 ####2. Show some examples of test images to demonstrate how your pipeline is working.  What did you do to optimize the performance of your classifier?
 I tried using smaller windows but it started taking too long and not much improvement in quality...so gave up on that angle.
 
-To compare if my classifier was as good as the one that the lessons were unpickling, I copied over test_image7 from Search and Classify lesson. I suspect that the teschers classifier is better trained over a larger (more varied) data set such as the 1GB and 3GB additional data. However, the increemental improvement was not enough to warrant taking up that much resources(space/time) for this project. I am sure if I had to sit in that csr however, I would do the extra bit:) coz its a once and done thing....so well worth it in a production scenafio.
+To compare if my classifier was as good as the one that the lessons were unpickling, I copied over test_image7 from Search and Classify lesson. I suspect that the teschers classifier is better trained over a larger (more varied) data set such as the 1GB and 3GB additional data. However, the incremental improvement was not enough to warrant taking up that much resources(space/time) for this project. <b>I am sure if I had to sit in that car however, I would do the extra bit:) coz its a once and done thing....so well worth it in a production scenario.</b>
 
 The detected window markings(left column) and then the heat-map resultant windows to keep (right column) are shown inline in the notebook
 I made sure I did a decent job on that and the test video before moving to the pipeline.
