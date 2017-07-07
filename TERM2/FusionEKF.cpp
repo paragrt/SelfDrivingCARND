@@ -98,8 +98,8 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
       //measurement covariance RADAR
       ekf_.R_ = R_radar_;
 
-      float px = measurement_pack.raw_measurements_[0] * cos((float)measurement_pack.raw_measurements_[1]);// rho * cos phi
-      float py = measurement_pack.raw_measurements_[0] * sin((float)measurement_pack.raw_measurements_[1]);// rho * sin phi
+      double px = measurement_pack.raw_measurements_[0] * cos((double)measurement_pack.raw_measurements_[1]);// rho * cos phi
+      double py = measurement_pack.raw_measurements_[0] * sin((double)measurement_pack.raw_measurements_[1]);// rho * sin phi
             ekf_.x_ << px,
                     py,
                     0,0;
@@ -132,15 +132,15 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
      * Use noise_ax = 9 and noise_ay = 9 for your Q matrix.
    */
   //compute the time elapsed between the current and previous measurements
-  float noise_ax = 9.0;
-  float noise_ay = 9.0;
+  double noise_ax = 9.0;
+  double noise_ay = 9.0;
 
-    float dt = (measurement_pack.timestamp_ - previous_timestamp_) / 1000000.0; //dt - expressed in seconds
+    double dt = (measurement_pack.timestamp_ - previous_timestamp_) / 1000000.0; //dt - expressed in seconds
     previous_timestamp_ = measurement_pack.timestamp_;
 
-    float dt_2 = dt * dt;
-    float dt_3 = dt_2 * dt;
-    float dt_4 = dt_3 * dt;
+    double dt_2 = dt * dt;
+    double dt_3 = dt_2 * dt;
+    double dt_4 = dt_3 * dt;
 
     //Modify the F matrix so that the time is integrated
     ekf_.F_(0, 2) = dt;
@@ -171,6 +171,10 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
 
     //cout << "ABOUT TO CALL jacobian " << endl;
     Hj_ = tools.CalculateJacobian(ekf_.x_);
+    if ( Hj_.isZero(0.0001)  ) {
+       cout << "Divide by zero...skipping update";
+       return;
+    }
     ekf_.H_ = Hj_;
     //cout << "DONE Calling jacobian Hj_=" << Hj_ << endl;
     //cout << "About to UpdateEKF RADAR\n";
@@ -185,6 +189,6 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
   }
 
   // print the output
-  cout << "x_ = " << ekf_.x_ << endl;
-  cout << "P_ = " << ekf_.P_ << endl;
+  //cout << "x_ = " << ekf_.x_ << endl;
+  //cout << "P_ = " << ekf_.P_ << endl;
 }

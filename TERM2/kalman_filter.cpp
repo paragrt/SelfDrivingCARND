@@ -49,27 +49,41 @@ void KalmanFilter::Update(const VectorXd &z) {
     P_ = (I - K * H_) * P_;
 }
 
+     double normalizeAngle(double theta) {
+        while ( theta > M_PI )
+        {
+            theta = theta - 2*M_PI;
+        }
+        while ( theta < (-1.0*M_PI) )
+        {
+            theta = theta + 2*M_PI;
+        }
+        return theta;
+     }
 void KalmanFilter::UpdateEKF(const VectorXd &z) {
   /**
   TODO:
     * update the state by using Extended Kalman Filter equations
   */
      VectorXd hOfx_= VectorXd(3);
-     hOfx_(0) = (float)sqrt((float)(x_(0)*x_(0)) + (float)(x_(1)*x_(1)));
-     hOfx_(1) = atan2(x_(1),x_(0));
-
-     while ( hOfx_(1) > M_PI )
-     {
-         hOfx_(1) = hOfx_(1) - 2*M_PI;
+     double px = x_(0);
+     double py = x_(1);
+     double vx = x_(2);
+     double vy = x_(3);
+     double rho = sqrt(px*px + py*py);
+     if((fabs(rho) < 0.0001)
+      || (fabs(px) < 0.0001) ){
+        cout << "Skipping update atan2 is undefined\n" << hOfx_ << endl;
+        return;
      }
-     while ( hOfx_(1) < (-1*M_PI) )
-     {
-         hOfx_(1) = hOfx_(1) + 2*M_PI;
-     }
-     hOfx_(2) = ( (x_(0)*x_(2) + x_(1)*x_(3) ) /hOfx_(0));
+     double theta = atan2(py,px);
+     theta = normalizeAngle(theta);
+     hOfx_(0) = rho ;
+     hOfx_(1) = theta ;
+     hOfx_(2) = (  px*vx + py*vy ) /rho ;
 
-     VectorXd z_pred = hOfx_;
-     VectorXd y = z - z_pred;
+     VectorXd y = z - hOfx_;
+     y(1) = normalizeAngle(y(1));
      MatrixXd Ht = H_.transpose();
      MatrixXd S = H_ * P_ * Ht + R_;
      MatrixXd Si = S.inverse();
