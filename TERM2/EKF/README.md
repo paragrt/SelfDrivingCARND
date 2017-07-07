@@ -16,4 +16,4 @@ y = z - hOfx_;
 y(1) contains the angle and it needed to stay within -pi and +pi
 Thats all!
 
-4. OH and my final values were...<img src="https://github.com/paragrt/SelfDrivingCARND/blob/master/TERM2/EKF/FInalRMSE.png" />
+4. Blue & Red dots are Radar/LIDAR measurements and the green dots are the predictions. My final ROOT MEAN SQUARE ERROR ( RMSE) values were within project rubric...<img src="https://github.com/paragrt/SelfDrivingCARND/blob/master/TERM2/EKF/FInalRMSE.png" />
