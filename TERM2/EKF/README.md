@@ -1,5 +1,10 @@
 <h1>Extended Kalman Filter</h1>
 
+0. Using series of (Predict Step)guesses of location(using physical model)  
+and (Update step) measurements(potentially noisy)....  
+develop a better estimate of actual location of a moving object ( such as a vehicle )  
+than can be developed by purely the physical model or purely measurement. 
+
 1. Had to update CMakelists.txt to use libuv 1.12 but did not use any functions specific to 1.12
 link_directories(/usr/local/Cellar/libuv/1.12.0/lib)
 
