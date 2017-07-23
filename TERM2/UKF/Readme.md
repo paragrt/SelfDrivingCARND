@@ -3,6 +3,7 @@
 <h2>Updated to include LIDAR update at July 23 11:19 AM CDT</h2>
 I had forgotten to update the x_ and P_ variables after doing all the LIDAR calcs.
 Adding it brought the RMSE values well within the  RUBRIC
+<h3>FINAL...Results:</h3>
 <img src="./ukf-result-20170724_FINAL.png"/>
 <pre>
   // initial covariance matrix
@@ -22,5 +23,5 @@ Adding it brought the RMSE values well within the  RUBRIC
 </pre>
 
   
-  <h3>Results:</h3>
+  <h3>OLDER...Results:</h3>
   <img src="./ukf-result-20170724.png"/>
