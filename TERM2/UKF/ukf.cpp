@@ -23,18 +23,18 @@ UKF::UKF() {
   x_ << 0,0,0,0,0;
   // initial covariance matrix
   P_ = MatrixXd(5, 5);
-  P_ << 0.4, 0, 0, 0,0,
-          0, 0.4, 0, 0,0, 
-          0, 0, 0.4, 0,0,
-          0, 0, 0, 0.4,0,
-          0, 0, 0, 0,0.4;
+  P_ << 0.9, 0, 0, 0,0,
+          0, 0.9, 0, 0,0, 
+          0, 0, 0.9, 0,0,
+          0, 0, 0, 0.9,0,
+          0, 0, 0, 0,0.9;
 
 
   // Process noise standard deviation longitudinal acceleration in m/s^2
-  std_a_ = 0.8; //30;
+  std_a_ = 2; //30;
 
   // Process noise standard deviation yaw acceleration in rad/s^2
-  std_yawdd_ = .4; //30;
+  std_yawdd_ = 1.5; //30;
 
   // Laser measurement noise standard deviation position1 in m
   std_laspx_ = 0.15;
@@ -135,8 +135,10 @@ void UpdateState(VectorXd* x_out, MatrixXd* P_out, VectorXd& z1, MatrixXd& s1, M
     // state difference
     VectorXd x_diff = Xsig_pred.col(i) - x;
     //angle normalization
-    while (x_diff(3)> M_PI) x_diff(3)-=2.*M_PI;
-    while (x_diff(3)<-M_PI) x_diff(3)+=2.*M_PI;
+    if ( ms.sensor_type_ == 1 ) {
+      while (x_diff(3)> M_PI) x_diff(3)-=2.*M_PI;
+      while (x_diff(3)<-M_PI) x_diff(3)+=2.*M_PI;
+    }
 
     Tc = Tc + weights(i) * x_diff * z_diff.transpose();
   }
@@ -148,8 +150,10 @@ void UpdateState(VectorXd* x_out, MatrixXd* P_out, VectorXd& z1, MatrixXd& s1, M
   VectorXd z_diff = z - z_pred;
 
   //angle normalization
-  while (z_diff(1)> M_PI) z_diff(1)-=2.*M_PI;
-  while (z_diff(1)<-M_PI) z_diff(1)+=2.*M_PI;
+  if ( ms.sensor_type_ == 1 ) {
+    while (z_diff(1)> M_PI) z_diff(1)-=2.*M_PI;
+    while (z_diff(1)<-M_PI) z_diff(1)+=2.*M_PI;
+  }
 
   //update state mean and covariance matrix
   x = x + K * z_diff;
@@ -251,9 +255,10 @@ void PredictMeasurement(VectorXd* z_out, MatrixXd* S_out, MatrixXd& Zsig, UKF& u
     VectorXd z_diff = Zsig.col(i) - z_pred;
 
     //angle normalization
-    while (z_diff(1)> M_PI) z_diff(1)-=2.*M_PI;
-    while (z_diff(1)<-M_PI) z_diff(1)+=2.*M_PI;
-
+    if ( msrmnt_type == 1 ) {
+      while (z_diff(1)> M_PI) z_diff(1)-=2.*M_PI;
+      while (z_diff(1)<-M_PI) z_diff(1)+=2.*M_PI;
+    }
     S = S + weights(i) * z_diff * z_diff.transpose();
   }
 
@@ -270,7 +275,6 @@ void PredictMeasurement(VectorXd* z_out, MatrixXd* S_out, MatrixXd& Zsig, UKF& u
   }
   S = S + R;
 
-  
 /*******************************************************************************
  * Student part end
  ******************************************************************************/
@@ -615,6 +619,8 @@ void UKF::UpdateLidar(MeasurementPackage meas_package) {
   VectorXd x_out = VectorXd(5);
   MatrixXd P_out = MatrixXd(5, 5);
   UpdateState(&x_out, &P_out, z_out, S_out, zSig, *this, meas_package);
+  x_ << x_out;
+  P_ << P_out;
 }
 
 /**
