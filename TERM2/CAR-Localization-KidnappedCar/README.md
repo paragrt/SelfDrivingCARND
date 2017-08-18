@@ -31,3 +31,13 @@ To ensure that they are sampled in proportion to their probablities, we can simp
 1 copy of   p1
 
 And then sample it 4 times with replacement ensuring that the chances of P4 getting picked is 5 times that of P1 and so on
+
+5. And the Success scenario of 2 runs is shown below. Message came up at around 81 System time ( 20 seconds inside of the rubric )
+Increasing the number of particles gives a smoother and lower error but a bit(6 seconds) slower.
+<p/>
+Couple of runs using 8 particles. 
+<img src="Success1.png" />
+<img src="Success2.png" />
+<p/>
+Using 80 particles
+<img src="Success_80Particles.png" />
