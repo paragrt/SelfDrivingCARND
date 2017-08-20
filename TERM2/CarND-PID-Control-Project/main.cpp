@@ -38,16 +38,16 @@ int main(int argc, char**argv)
 
   PID pid;
   // TODO: Initialize the pid variable.
-  double Kp = 1.0;
-  double Ki = 1.0;
-  double Kd = 1.0;
-  if ( argc < 3 ) {
+  double Kp = 0.07;
+  double Ki = 0.0001;
+  double Kd = 0.9;
+  if ( argc < 4 ) {
      printf("Usage: %s Kp Ki Kd\n", argv[0]);
      printf("Using default values of Kp=%f, Ki=%f, Kd=%f\n", Kp,Ki,Kd);
   } else {
-     Kp = atof(argv[0]);
-     Ki = atof(argv[1]);
-     Kd = atof(argv[2]);
+     Kp = atof(argv[1]);
+     Ki = atof(argv[2]);
+     Kd = atof(argv[3]);
   }
   pid.Init(Kp, Ki, Kd);
   //END TODO: Initialize the pid variables.
@@ -79,7 +79,7 @@ int main(int argc, char**argv)
           * another PID controller to control the speed!
           */
           pid.UpdateError(cte);
-          steer_value = deg2rad(angle)-pid.TotalError();
+          steer_value = deg2rad(angle)+pid.TotalError();
           // DEBUG
           if ( cte > 1.0 ) {
           std::cout << "CTE: " << cte

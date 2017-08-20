@@ -13,8 +13,8 @@ PID::~PID() {}
 
 void PID::Init(double aKp, double aKi, double aKd) {
    Kp = aKp;
-   Kd = aKi;
-   Ki = aKd;
+   Ki = aKi;
+   Kd = aKd;
    p_error = 0;
    d_error = 0;
    i_error = 0;
@@ -30,6 +30,6 @@ void PID::UpdateError(double cte) {
 }
 
 double PID::TotalError() {
-    return p_error + d_error + i_error;
+    return -(p_error + d_error + i_error);
 }
 
