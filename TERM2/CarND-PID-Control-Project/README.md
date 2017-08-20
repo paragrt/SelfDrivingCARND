@@ -1,8 +1,23 @@
 
 I wrote the main.cpp so as to enable me to pass in parameters Kp, Ki, Kd as command line parameters and manually tuned the params such that the CrossTrackError (CTE)  remained below/close to 1.0 ( heuristically determined)  
 If CTE exceeded 1.0 substantially, I would abandon that set of params and try another.
+<h3>UPDATE</h3>
 
-<h2>Choosing the PID coefficients: ( Kp=75, Ki=150, Kd=0.00003 )</h2>
+I had a bug in the parameters being passed. Corrected that and redid the twiddle algorithm with new Kp, Ki, Kd
+Used this from a stackoverflow recommendation
+To tune a PID use the following steps:
+<ol>
+  <li>Set all gains to zero.</li>
+<li>Increase the P gain until the response to a disturbance is steady oscillation.</li>
+<li>Increase the D gain until the the oscillations go away (i.e. it's critically damped).</li>
+<li>Repeat steps 2 and 3 until increasing the D gain does not stop the oscillations.</li>
+<li>Set P and D to the last stable values.</li>
+<li>Increase the I gain until it brings you to the setpoint with the number of oscillations desired (normally zero but a quicker response can be had if you don't mind a couple oscillations of overshoot)</li>
+</ol>
+<h2>
+Choosing the PID coefficients: ./pid 0.07 0.0001 0.9
+USING Kp=0.070000, Ki=0.000100, Kd=0.900000 )
+</h2>
 
 ## Choosing Kp
 This is the most intuitive. With the other 2 set to zero, just picked a KP starting with small values to large such that it roughly 
@@ -41,64 +56,36 @@ I think slowing down the throttle in inverse proportion to the change in the ste
 Below is a sample of my runs and my attempts at twiddling the params
   <pre>
   history | grep pid
-  525  ./pid 100 .000035 20
-  526  ./pid 100 .000015 20
-  527  ./pid 100 .000015 50
-  528  ./pid 50 .000015 50
-  529  ./pid 50 .000020 50
-  530  ./pid 50 .000020 100
-  531  ./pid 60 .000025 150
-  532  ./pid 70 .000020 200
-  533  ./pid 900 .000020 200
-  534  ./pid 90 .000020 200
-  535  ./pid 100 .000020 100
-  536  ./pid 50 .000030 50
-  537  ./pid 30 .000030 30
-  538  ./pid 30 .000030 60
-  539  ./pid 30 .000025 100
-  540  ./pid 40 .000025 80
-  541  ./pid 60 .000025 80
-  542  ./pid 80 .000025 160
-  543  ./pid 10 .000025 20
-  544  ./pid 10 .000025 50
-  545  ./pid 10 .00003 50
-  546  ./pid 20 .00005 50
-  547  ./pid 30 .00004 60
-  548  ./pid 35 .000035 70
-  549  ./pid 30 .000035 70
-  550  ./pid 35 .000035 90
-  551  ./pid 50 .00004 100
-  552  ./pid 50 .00004 100
-  553  ./pid 50 .00004 100
-  554  ./pid 50 .000025 100
-  555  ./pid 20 .00005 100
-  556  ./pid 20 .00005 200
-  557  ./pid 20 .00005 200
-  558  ./pid 50 .00005 200
-  559  ./pid 50 .00005 100
-  564  ./pid 50 .00005 100 2>out.txt
-  565  ./pid 50 .00005 100 
-  568  ./pid 50 .00005 100 2>out.txt
-  569  ./pid 100 .00005 100 2>out.txt
-  570  ./pid 10 .00007 100 2>out.txt
-  571  ./pid 10 .00009 200 2>out.txt
-  572  ./pid 30 .00009 200 2>out.txt
-  573  ./pid 50 .00009 200 2>out.txt
-  574  ./pid 50 .00005 100 2>out.txt
-  575  ./pid 60 .00006 120 2>out.txt
-  577  ./pid 60 .00006 120 2>out.txt
-  580  ./pid 60 .00006 120 2>out.txt
-  582  ./pid 60 .00006 120 2>out.txt
-  583  ./pid 40 .00005 120 2>out.txt
-  588  ./pid 40 .00005 120 2>out.txt
-  589  ./pid 50 .00005 100 2>out.txt
-  591  ./pid 50 .00005 100 2>out.txt
-  592  ./pid 70 .00003 140 2>out.txt
-  593  ./pid 10 .00003 100 2>out.txt
-  594  ./pid 20 .00005 100 2>out.txt
-  595  ./pid 40 .00005 100 2>out.txt
-  614  ./pid 100 .00005 200 2>out.txt
-  615  ./pid 100 .00005 100 2>out.txt
-  616  ./pid 100 .00003 100 2>out.txt
-  617  ./pid 75 .00003 150 2>out.txt
+  660  ./pid 1 0.00003 2
+  661  ./pid 1 2 0.00003
+  662  ./pid 1 0 0
+  663  ./pid 0.1 0 0
+  664  ./pid 0.1 1 0
+  665  ./pid 0.1 0.2 0
+  666  ./pid 0.1 0.2 0
+  667  ./pid 0.1 0.001 0
+  668  ./pid 0.1 0 0.001
+  669  ./pid 0.01 0 0.0001
+  670  ./pid 0.03 0 0.0001
+  671  ./pid 0.03 0.0001 0.0001
+  672  ./pid 0.03 0.00001 0.00001
+  674  ./pid 0.03 0.0 0.0
+  675  ./pid 0.03 0.001 0.0
+  676  ./pid 0.03 0.00001 0.0
+  677  ./pid 0.03 0.00001 0.00001
+  679  ./pid 0.01 0.00001 0.00001
+  680  ./pid 0.02 0.00001 0.00001
+  682  ./pid 0.02 0 0
+  683  ./pid 0.025 0 0
+  684  ./pid 0.05 0 0
+  685  ./pid 0.07 0 0
+  686  ./pid 0.055 0 0
+  688  ./pid 0.055 0 0.01
+  689  ./pid 0.055 0 0.1
+  690  ./pid 0.055 0 0.2
+  691  ./pid 0.06 0 0.3
+  692  ./pid 0.06 0 0.6
+  693  ./pid 0.06 0.0001 0.6
+  694  ./pid 0.07 0.0001 0.9
+  695  ./pid 0.07 0.0001 0.9
 </pre>
