@@ -1,10 +1,10 @@
 
-I wrote the main.cpp so that I passed in parameters Kp, Ki, Kd as command line parameters and manually tuned the params such that the CrossTrackError remained below 1.0 ( hueristically determined)  
-If error exceeded 1.0 substantially, I would abandon that set of params and try another.
+I wrote the main.cpp so as to enable me to pass in parameters Kp, Ki, Kd as command line parameters and manually tuned the params such that the CrossTrackError (CTE)  remained below/close to 1.0 ( heuristically determined)  
+If CTE exceeded 1.0 substantially, I would abandon that set of params and try another.
 
-Choosing the PID coefficients: ( Kp=75, Ki=150, Kd=0.00003 )
+<h2>Choosing the PID coefficients: ( Kp=75, Ki=150, Kd=0.00003 )</h2>
 
-#Choosing Kp
+## Choosing Kp
 This is the most intuitive. With the other 2 set to zero, just picked a KP starting with small values to large such that it roughly 
 follows the desired path  
 
@@ -13,11 +13,11 @@ When we came upon a sharp bend, P alone could not correct quickly.
 Neither could it correct overall drift away from the road. 
 So with P alone, the car would often run along side (parallel to) the road but not on it.
 
-#Choosing Ki
+## Choosing Ki
 To bring it back on the road, adding the Ki term, (which I had read can be roughly 2 times Kp as a starting point) helped it get back on the road.
 However, it still would veer off the road as we approached sharp turns.
 
-#Choosing Kd
+## Choosing Kd
 For handling sharp and quick turns, this was needed but its value is very small. And small changes in it caused substantial fluctuations
 The combination of Kp and Kd alone was very jittery. If u sat in such a car it would make you seasick :)
 To smooth out the changes and generally drift towards the centre, Ki was added.
@@ -29,13 +29,13 @@ easier to handle, I ran everything with one step below fastest speed and tuned w
   <source src="https://youtu.be/nIfawpB4X50" type="video/mp4"/>
 </video>
 
-#Note
+## Note
 BTW, Capturing the Video by screen capture seemed to interfere with Unity's simulator execution so I just got a video of my computer using my phone.
 After a point I started reporting the CTE (if over 1.0) to std error and collecting the CTE in out.txt  
 The last one is amongst the best runs and the CTE did go marginally(1.5) over 1.0 but stayed low overall.
 
-#Improvements:
-I think slowing down the throttle in inverse proportion to the change in the wheel angle may help because in real life, thats what we do...slow down at a curve  
+## Improvements:
+I think slowing down the throttle in inverse proportion to the change in the steer angle may help because in real life, thats what we do...slow down when we change direction
   <pre>
   history | grep pid
   525  ./pid 100 .000035 20
