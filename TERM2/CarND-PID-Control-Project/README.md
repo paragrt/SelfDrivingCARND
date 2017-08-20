@@ -24,7 +24,7 @@ To smooth out the changes and generally drift towards the centre, Ki was added.
 
 Also noticed that higher values of Kp tended to make the steering oscillate and thereby lower the speed. While running at slower speed seems to be
 easier to handle, I ran everything with one step below fastest speed and tuned with that.
-Here is a short video.
+<a target="_blank" href="https://youtu.be/nIfawpB4X50">Here is a short video.</a>
 <video width="320" height="240" controls>
   <source src="https://youtu.be/nIfawpB4X50" type="video/mp4"/>
 </video>
