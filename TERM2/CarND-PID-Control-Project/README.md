@@ -36,6 +36,9 @@ The last one is amongst the best runs and the CTE did go marginally(1.5) over 1.
 
 ## Improvements:
 I think slowing down the throttle in inverse proportion to the change in the steer angle may help because in real life, thats what we do...slow down when we change direction
+
+<p/>
+Below is a sample of my runs and my attempts at twiddling the params
   <pre>
   history | grep pid
   525  ./pid 100 .000035 20
