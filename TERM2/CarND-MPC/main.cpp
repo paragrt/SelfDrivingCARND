@@ -86,24 +86,23 @@ int main() {
         if (event == "telemetry") {
           // j[1] is the data JSON object
           vector<double> ptsx = j[1]["ptsx"];
-          Eigen::VectorXd x_pts(ptsx.size());
-          for(int i = 0; i < ptsx.size();i++) {
-             x_pts[i] = ptsx[i];
-          }
           vector<double> ptsy = j[1]["ptsy"];
-          Eigen::VectorXd y_pts(ptsy.size());
-          for(int i = 0; i < ptsy.size();i++) {
-             y_pts[i] = ptsy[i];
-          }
           double px = j[1]["x"];
           double py = j[1]["y"];
           double psi = j[1]["psi"];
           double v = j[1]["speed"];
-          Eigen::VectorXd my_state(6);
-          my_state[0] = px;
-          my_state[1] = py;
-          my_state[2] = psi;
-          my_state[3] = v;
+          
+          Eigen::VectorXd x_pts(ptsx.size());
+          Eigen::VectorXd y_pts(ptsy.size());
+          vector<double> carCordDisplay (ptsy.size());
+          
+          //convert from map tp vehicle coordinates
+          for(int i = 0; i < ptsx.size();i++) {
+             x_pts[i] = (ptsx[i] - px) * cos(-psi) - (ptsy[i] - py) * sin(-psi);
+             double tmp = -ptsy[i]; //convert to right handed coordinate system
+             y_pts[i] = -(ptsx[i] - px) * sin(-psi) - (tmp - py) * cos(-psi));
+             carCordDisplay[i] = -y_pts[i];
+          }
           
           // The polynomial is fitted to a curve so a polynomial
           // order 3 is sufficient.
@@ -111,10 +110,11 @@ int main() {
 
           //TODO calculate cte and epsi
           double cte = polyeval(coeffs, px) - py;
-          my_state[4] = cte;
-          
           double epsi = psi - atan(coeffs[1]);
-          my_state[5] = epsi;
+          
+          Eigen::VectorXd my_state(6);
+          my_state << px, py, psi, v, cte, epsi;
+          
           vector<double> solution = mpc.Solve(my_state, coeffs);
           /*
           * TODO: Calculate steering angle and throttle using MPC.
@@ -135,8 +135,8 @@ int main() {
           msgJson["throttle"] = throttle_value;
 
           //Display the MPC predicted trajectory 
-          vector<double> mpc_x_vals;
-          vector<double> mpc_y_vals;
+          vector<double> mpc_x_vals = x_pts;
+          vector<double> mpc_y_vals = carCordDisplay;
 
           //.. add (x,y) points to list here, points are in reference to the vehicle's coordinate system
           // the points in the simulator are connected by a Green line
@@ -145,9 +145,14 @@ int main() {
           msgJson["mpc_y"] = mpc_y_vals;
 
           //Display the waypoints/reference line
-          vector<double> next_x_vals;
-          vector<double> next_y_vals;
-
+          
+          vector<double> next_x_vals = mpc_x_vals;
+          vector<double> next_y_vals(carCordDisplay.size());
+          for(int i = 0; i < next_y_vals.size(); i++)
+          {
+            next_y_vals[i] = polyeval(coeffs, next_x_vals[i]);  
+          }
+          
           //.. add (x,y) points to list here, points are in reference to the vehicle's coordinate system
           // the points in the simulator are connected by a Yellow line
 
