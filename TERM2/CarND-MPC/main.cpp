@@ -77,7 +77,7 @@ int main() {
     // The 4 signifies a websocket message
     // The 2 signifies a websocket event
     string sdata = string(data).substr(0, length);
-    cout << sdata << endl;
+//    cout << sdata << endl;
     if (sdata.size() > 2 && sdata[0] == '4' && sdata[1] == '2') {
       string s = hasData(sdata);
       if (s != "") {
@@ -85,8 +85,11 @@ int main() {
         string event = j[0].get<string>();
         if (event == "telemetry") {
           // j[1] is the data JSON object
+          //WAYPOINTS in world/map coordinates
           vector<double> ptsx = j[1]["ptsx"];
           vector<double> ptsy = j[1]["ptsy"];
+          
+          //Position, speed and orientation of CAR in world/map
           double px = j[1]["x"];
           double py = j[1]["y"];
           double psi = j[1]["psi"];
@@ -94,14 +97,12 @@ int main() {
           
           Eigen::VectorXd x_pts(ptsx.size());
           Eigen::VectorXd y_pts(ptsy.size());
-          vector<double> carCordDisplay (ptsy.size());
           
-          //convert from map tp vehicle coordinates
+          //convert from map t0 vehicle coordinates
           for(int i = 0; i < ptsx.size();i++) {
-             x_pts[i] = (ptsx[i] - px) * cos(-psi) - (ptsy[i] - py) * sin(-psi);
-             double tmp = -ptsy[i]; //convert to right handed coordinate system
-             y_pts[i] = -(ptsx[i] - px) * sin(-psi) - (tmp - py) * cos(-psi));
-             carCordDisplay[i] = -y_pts[i];
+             x_pts[i] =  (ptsx[i] - px) * cos(-psi) - (ptsy[i] - py) * sin(-psi);
+             y_pts[i] = -(ptsx[i] - px) * sin(-psi) - (ptsy[i] - py) * cos(-psi);
+             y_pts[i] *= -1.0; //make it right handed
           }
           
           // The polynomial is fitted to a curve so a polynomial
@@ -111,6 +112,7 @@ int main() {
           //TODO calculate cte and epsi
           double cte = polyeval(coeffs, px) - py;
           double epsi = psi - atan(coeffs[1]);
+cout << "CTE = " << cte << " epsi = " << epsi << std::endl;
           
           Eigen::VectorXd my_state(6);
           my_state << px, py, psi, v, cte, epsi;
@@ -122,21 +124,23 @@ int main() {
           * Both are in between [-1, 1].
           *
           */
-          for(int i = 0; i < solution.size(); i++) {
-             std::cout << "solution["<<i<<"]="<<solution[i] << std::endl;
-          }
-          double steer_value = solution[6]/deg2rad(25);//to ensure value between -1 and 1
+          std::cout << "solution[6]="<<solution[6] << "solution[7]="<<solution[7] << std::endl;
+          double steer_value = solution[6];//to ensure value between -1 and 1
           double throttle_value = solution[7];
 
           json msgJson;
           // NOTE: Remember to divide by deg2rad(25) before you send the steering value back.
           // Otherwise the values will be in between [-deg2rad(25), deg2rad(25] instead of [-1, 1].
-          msgJson["steering_angle"] = steer_value;
+          msgJson["steering_angle"] = -steer_value/deg2rad(25);
           msgJson["throttle"] = throttle_value;
 
           //Display the MPC predicted trajectory 
-          vector<double> mpc_x_vals = x_pts;
-          vector<double> mpc_y_vals = carCordDisplay;
+          vector<double> mpc_x_vals(x_pts.size());
+          for(int i = 0; i < mpc_x_vals.size(); i++) 
+             mpc_x_vals[i] = x_pts[i];
+          vector<double> mpc_y_vals(y_pts.size());
+          for(int i = 0; i < mpc_y_vals.size(); i++) 
+             mpc_y_vals[i] = y_pts[i];
 
           //.. add (x,y) points to list here, points are in reference to the vehicle's coordinate system
           // the points in the simulator are connected by a Green line
@@ -147,7 +151,7 @@ int main() {
           //Display the waypoints/reference line
           
           vector<double> next_x_vals = mpc_x_vals;
-          vector<double> next_y_vals(carCordDisplay.size());
+          vector<double> next_y_vals(y_pts.size());
           for(int i = 0; i < next_y_vals.size(); i++)
           {
             next_y_vals[i] = polyeval(coeffs, next_x_vals[i]);  
@@ -161,7 +165,7 @@ int main() {
 
 
           auto msg = "42[\"steer\"," + msgJson.dump() + "]";
-          std::cout << msg << std::endl;
+          //std::cout << msg << std::endl;
           // Latency
           // The purpose is to mimic real driving conditions where
           // the car does actuate the commands instantly.
@@ -171,7 +175,7 @@ int main() {
           //
           // NOTE: REMEMBER TO SET THIS TO 100 MILLISECONDS BEFORE
           // SUBMITTING.
-          this_thread::sleep_for(chrono::milliseconds(100));
+          //this_thread::sleep_for(chrono::milliseconds(100));
           ws.send(msg.data(), msg.length(), uWS::OpCode::TEXT);
         }
       } else {
@@ -215,3 +219,4 @@ int main() {
   }
   h.run();
 }
+

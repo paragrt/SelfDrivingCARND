@@ -6,9 +6,9 @@
 using CppAD::AD;
 
 // TODO: Set the timestep length and duration
-size_t N = 25;
-double dt = 0.08;
-//So T will be a few seconds as recommended 25 x 0.08 = 2.0 seconds
+size_t N = 15;
+double dt = 0.1;
+//So T will be a few seconds as recommended 15 x 0.1 = 1.5 seconds
 
 // This value assumes the model presented in the classroom is used.
 //
@@ -24,7 +24,7 @@ const double Lf = 2.67;
 
 // Both the reference cross track and orientation errors are 0.
 // The reference velocity is set to 40 mph.
-double ref_v = 40;
+double ref_v = 40 * 1600.0/3600.0;
 
 // The solver takes all the state variables and actuator
 // variables in a singular vector. Thus, we should to establish
@@ -65,7 +65,7 @@ class FG_eval {
 
     // Minimize the value gap between sequential actuations.
     for (int t = 0; t < N - 2; t++) {
-      fg[0] += CppAD::pow(vars[delta_start + t + 1] - vars[delta_start + t], 2);
+      fg[0] += 500.0*CppAD::pow(vars[delta_start + t + 1] - vars[delta_start + t], 2);
       fg[0] += CppAD::pow(vars[a_start + t + 1] - vars[a_start + t], 2);
     }
 
@@ -246,4 +246,3 @@ vector<double> MPC::Solve(Eigen::VectorXd x0, Eigen::VectorXd coeffs) {
           solution.x[cte_start + 1], solution.x[epsi_start + 1],
           solution.x[delta_start],   solution.x[a_start]};
 }
-
