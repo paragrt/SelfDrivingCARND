@@ -12,6 +12,7 @@
 // for convenience
 using json = nlohmann::json;
 
+const double Lf1 = 2.67;
 // For converting back and forth between radians and degrees.
 constexpr double pi() { return M_PI; }
 double deg2rad(double x) { return x * pi() / 180; }
@@ -100,22 +101,29 @@ int main() {
           
           //convert from map t0 vehicle coordinates
           for(int i = 0; i < ptsx.size();i++) {
-             x_pts[i] =  (ptsx[i] - px) * cos(-psi) - (ptsy[i] - py) * sin(-psi);
-             y_pts[i] = -(ptsx[i] - px) * sin(-psi) - (ptsy[i] - py) * cos(-psi);
-             y_pts[i] *= -1.0; //make it right handed
+//copied from video referred to in the slack channel
+             double shift_x = (ptsx[i] - px);
+             double shift_y = (ptsy[i] - py);
+             x_pts[i] = shift_x * cos(0-psi) - shift_y * sin(0-psi);
+             y_pts[i] = shift_x * sin(0-psi) + shift_y * cos(0-psi);
           }
           
           // The polynomial is fitted to a curve so a polynomial
           // order 3 is sufficient.
           auto coeffs = polyfit(x_pts, y_pts, 3);
 
-          //TODO calculate cte and epsi
-          double cte = polyeval(coeffs, px) - py;
-          double epsi = psi - atan(coeffs[1]);
-cout << "CTE = " << cte << " epsi = " << epsi << std::endl;
+          //TODO calculate cte and epsi 
+          //because we shifted origin to car px = 0 and py = 0
+          double cte = polyeval(coeffs, 0) - 0;
+          //because we shifted origin to car and rotated it to match cars orientation psi becomes zero
+          //double epsi = psi - atan(coeffs[1]);
+          double epsi = 0 - atan(coeffs[1]);
           
+          //because we shifted origin to car px = 0 and py = 0
+          //because we shifted origin to car and rotated it to match cars orientation psi becomes zero
           Eigen::VectorXd my_state(6);
-          my_state << px, py, psi, v, cte, epsi;
+          //my_state << px, py, psi, v, cte, epsi;
+          my_state << 0, 0, 0, v, cte, epsi;
           
           vector<double> solution = mpc.Solve(my_state, coeffs);
           /*
@@ -124,23 +132,25 @@ cout << "CTE = " << cte << " epsi = " << epsi << std::endl;
           * Both are in between [-1, 1].
           *
           */
-          std::cout << "solution[6]="<<solution[6] << "solution[7]="<<solution[7] << std::endl;
-          double steer_value = solution[6];//to ensure value between -1 and 1
-          double throttle_value = solution[7];
+          double steer_value = solution[0];//to ensure value between -1 and 1
+          double throttle_value = solution[1];
 
           json msgJson;
           // NOTE: Remember to divide by deg2rad(25) before you send the steering value back.
           // Otherwise the values will be in between [-deg2rad(25), deg2rad(25] instead of [-1, 1].
-          msgJson["steering_angle"] = -steer_value/deg2rad(25);
+          msgJson["steering_angle"] = steer_value/(deg2rad(25)*Lf1);
           msgJson["throttle"] = throttle_value;
 
           //Display the MPC predicted trajectory 
-          vector<double> mpc_x_vals(x_pts.size());
-          for(int i = 0; i < mpc_x_vals.size(); i++) 
-             mpc_x_vals[i] = x_pts[i];
-          vector<double> mpc_y_vals(y_pts.size());
-          for(int i = 0; i < mpc_y_vals.size(); i++) 
-             mpc_y_vals[i] = y_pts[i];
+          vector<double> mpc_x_vals;
+          vector<double> mpc_y_vals;
+          for(int i = 2; i < solution.size(); i++){ 
+             if ( i%2 == 0 ) {
+                mpc_x_vals.push_back(solution[i]);
+             } else {
+                mpc_y_vals.push_back(solution[i]);
+             }
+          }
 
           //.. add (x,y) points to list here, points are in reference to the vehicle's coordinate system
           // the points in the simulator are connected by a Green line
@@ -148,13 +158,15 @@ cout << "CTE = " << cte << " epsi = " << epsi << std::endl;
           msgJson["mpc_x"] = mpc_x_vals;
           msgJson["mpc_y"] = mpc_y_vals;
 
-          //Display the waypoints/reference line
-          
-          vector<double> next_x_vals = mpc_x_vals;
-          vector<double> next_y_vals(y_pts.size());
-          for(int i = 0; i < next_y_vals.size(); i++)
+          //Display the reference line
+          int num_pts = 20; 
+          double increment  = 2.5;
+          vector<double> next_x_vals(num_pts);
+          vector<double> next_y_vals(num_pts);
+          for(int i = 0; i < num_pts; i++)
           {
-            next_y_vals[i] = polyeval(coeffs, next_x_vals[i]);  
+            next_x_vals[i] = i * increment;
+            next_y_vals[i] = polyeval(coeffs, i*increment);  
           }
           
           //.. add (x,y) points to list here, points are in reference to the vehicle's coordinate system
@@ -175,7 +187,7 @@ cout << "CTE = " << cte << " epsi = " << epsi << std::endl;
           //
           // NOTE: REMEMBER TO SET THIS TO 100 MILLISECONDS BEFORE
           // SUBMITTING.
-          this_thread::sleep_for(chrono::milliseconds(100));
+          //this_thread::sleep_for(chrono::milliseconds(100));
           ws.send(msg.data(), msg.length(), uWS::OpCode::TEXT);
         }
       } else {
