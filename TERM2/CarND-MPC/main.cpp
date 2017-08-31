@@ -123,7 +123,24 @@ int main() {
           //because we shifted origin to car and rotated it to match cars orientation psi becomes zero
           Eigen::VectorXd my_state(6);
           //my_state << px, py, psi, v, cte, epsi;
-          my_state << 0, 0, 0, v, cte, epsi;
+          double latency = 0.1;
+
+/***************Latency seconds in the FUTURE**************
+  with psi = zero and latency = 0.1
+  x = x + v * cos(psi) * dt;
+  y = y + v * sin(psi) * dt;
+  psi = psi + v * prev_delta_/Lf * dt;
+  v = v + prev_a_ * dt;
+  cte = cte + (v * sin(epsi) * dt);
+  epsi = epsi + v * prev_delta_ / Lf * dt;
+***************/
+
+          my_state << 0+v*latency,            //cos(0) is 1 and latency of 0.1
+                      0,                      //y is zero because sin(0) is zero 
+                      0+ v * mpc.prev_delta_/Lf1 * latency, 
+                      v+mpc.prev_a_*latency,  // new velocity = old velcoty + old accel * dt 
+                      cte + (v * sin(epsi) * latency), 
+                      epsi + epsi + v * mpc.prev_delta_/Lf1 * latency;
           
           vector<double> solution = mpc.Solve(my_state, coeffs);
           /*
@@ -159,7 +176,7 @@ int main() {
           msgJson["mpc_y"] = mpc_y_vals;
 
           //Display the reference line
-          int num_pts = 20; 
+          int num_pts = 25; 
           double increment  = 2.5;
           vector<double> next_x_vals(num_pts);
           vector<double> next_y_vals(num_pts);
